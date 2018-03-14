@@ -9,32 +9,43 @@ function guess() {
     {
       setHiddenFields();
     }
+
+    if(!validateInput(input.value))
+    {
+      return;
+    }
+    else {
+      {
+        attempt.value++;
+      }
+    }
 }
 
 function setHiddenFields(){
 
   answer.value = Math.floor(Math.random() * 10000).toString();
 
-  while(answer.length < 4){
-    answer.value += "0";
+  while(answer.value.length < 4){
+    answer.value = "0" + answer.value;
 
   }
-  attempt.value = '0';
+  attempt.value = "0";
 }
 
 function setMessage(message){
-  message.innerHTML = message;
+  document.getElementById('message').innerHTML = message;
 }
 
 function validateInput(input){
-  if(!input.value){
+  if(input.length != 4){
+    setMessage("Guesses must be exactly 4 characters long.");
     return false;
   }
-  ateempt.value++;
+  return true;
 }
 
 function getResults(input){
   let html = '<div class="row"><span class="col-md-6">' + input + '</span><div class="col-md-6">';
 
-  
+
 }

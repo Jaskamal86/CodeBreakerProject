@@ -3,40 +3,36 @@ let attempt = document.getElementById('attempt');
 
 function guess() {
     let input = document.getElementById('user-guess');
-    //add functionality to guess function here
-
-    if(answer.value == '' || attempt.value == '')
-    {
+  
+    if(answer.value == '' || attempt.value == ''){
       setHiddenFields();
     }
 
-    if(!validateInput(input.value))
-    {
+    if(!validateInput(input.value)){
       return;
     }
     else {
         attempt.value++;
     }
 
-    if(getResults(input.value))
-    {
+    if(getResults(input.value)){
       setMessage("You Win! :)");
-    }
-    else if (attempt.value >= 10) {
+      showAnswer(true);
+      showReplay();
+    } else if (attempt.value >= 10) {
       setMessage("You Lose! :(");
-    }
-    else {
+      showAnswer(false);
+      showReplay();
+    } else {
       setMessage("Incorrect, try again.");
     }
 }
 
 function setHiddenFields(){
-
   answer.value = Math.floor(Math.random() * 10000).toString();
 
   while(answer.value.length < 4){
     answer.value = "0" + answer.value;
-
   }
   attempt.value = "0";
 }

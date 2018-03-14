@@ -15,9 +15,18 @@ function guess() {
       return;
     }
     else {
-      {
         attempt.value++;
-      }
+    }
+
+    if(getResults(input.value))
+    {
+      setMessage("You Win! :)");
+    }
+    else if (attempt.value >= 10) {
+      setMessage("You Lose! :(");
+    }
+    else {
+      setMessage("Incorrect, try again.");
     }
 }
 
@@ -65,4 +74,29 @@ function getResults(input){
   html += '</div></div>';
 
   document.getElementById('results').innerHTML += html;
+
+  if(input == answer.value)
+  {
+    return true;
+  }
+  return false;
+}
+
+function showAnswer(success) {
+
+  let code = document.getElementById('code');
+
+  if(success){
+    code.className += ' success';
+  }
+  else {
+      code.className += ' failure';
+  }
+
+  code.innerHTML = answer.value;
+}
+
+function showReplay() {
+  document.getElementById('guessing-div').style.display = "none";
+  document.getElementById('replay-div').style.display = "block";
 }
